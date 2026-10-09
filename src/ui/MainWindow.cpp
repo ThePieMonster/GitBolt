@@ -4102,6 +4102,8 @@ void MainWindow::setupConnections()
     if (auto* branchTree = repoView_->branchTree()) {
         connect(branchTree, &widgets::BranchTreeWidget::checkoutRequested,
                 gitService_, &services::GitService::checkoutBranch);
+        connect(branchTree, &widgets::BranchTreeWidget::checkoutRemoteRequested,
+                gitService_, &services::GitService::checkoutRemoteBranch);
         connect(branchTree, &widgets::BranchTreeWidget::createBranchRequested,
                 gitService_, &services::GitService::createBranch);
         connect(branchTree, &widgets::BranchTreeWidget::deleteBranchRequested,
