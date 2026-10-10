@@ -29,6 +29,11 @@ toolbar's Commit and Stash buttons in light mode.
   their text, had more padding than the icon buttons. On macOS they
   sat 34pt apart, against 25 to 27pt between the icon buttons; they are
   now 25pt apart. The dark theme is unchanged.
+- **Contributing**: contributors now agree once to a contributor
+  license agreement (`CLA.md`) by ticking its box in the pull
+  request template. They keep their copyright, and the project can
+  publish their contributions under the GPL-3.0 or a license it
+  chooses later.
 - Development: a new end-to-end test opens Settings after a
   repository opens. It runs GitBolt with a scratch home folder, so a
   crash leaves no crash report behind for the next real launch.
