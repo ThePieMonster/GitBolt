@@ -10,7 +10,7 @@ set(CPACK_PACKAGE_VENDOR "GitBolt")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Fast cross-platform Git GUI client")
 set(CPACK_PACKAGE_DESCRIPTION "GitBolt is a high-performance Git GUI client built with Qt 6 and libgit2.")
 set(CPACK_PACKAGE_HOMEPAGE_URL "https://www.gitbolt.com")
-set(CPACK_PACKAGE_CONTACT "GitBolt Team <team@gitbolt.dev>")
+set(CPACK_PACKAGE_CONTACT "GitBolt Team <support@gitbolt.com>")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "GitBolt")
 
@@ -92,7 +92,7 @@ else()
     set(CPACK_GENERATOR "DEB;TGZ")
 
     # DEB package settings
-    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "GitBolt Team <team@gitbolt.dev>")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "GitBolt Team <support@gitbolt.com>")
     set(CPACK_DEBIAN_PACKAGE_SECTION "devel")
     set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
     # Let dpkg-shlibdeps compute the real shared-library dependencies:
