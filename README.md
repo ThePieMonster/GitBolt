@@ -2,6 +2,8 @@
 
 **Fast, cross-platform Git GUI client built with Qt 6, C++, and libgit2.**
 
+Website: **[www.gitbolt.com](https://www.gitbolt.com)**
+
 GitBolt is a high-performance, feature-complete Git client for macOS, Linux, and Windows. Built natively in C++ with Qt 6 for maximum rendering performance and minimal resource usage.
 
 > **License:** GitBolt is licensed under the **GNU General Public License v3.0**. See [LICENSE](LICENSE) for the full text. The "GitBolt" name and logo are protected trademarks — see [TRADEMARK.md](TRADEMARK.md) for the trademark policy. Forks are welcome under the GPL but must be rebranded.
