@@ -32,7 +32,10 @@ tags, checkout, cloning and launching.
   commit gets even if the rebase stops on a conflict first and is
   carried on from GitBolt. Edit stops the rebase after that commit and
   says so, and Continue on the bar carries on. A squash or fixup with
-  no kept commit below it is caught before git starts.
+  no kept commit below it is caught before git starts. Merge commits
+  in the range are left out, as git leaves them out, and a plan made
+  before HEAD moved, or before another branch was checked out, is
+  refused while the dialog is still open.
 
 ### Fixed
 
@@ -53,9 +56,10 @@ tags, checkout, cloning and launching.
   fetching a repository after it was closed, and made quitting wait
   for it. It now runs in the background and quietly: a failure is a
   passing note and a flag on the auto-fetch label rather than a
-  sticky error, and clicking Fetch during an auto-fetch shows that
-  fetch as running ("Fetching from origin…") and then its result, as
-  for a toolbar Fetch.
+  sticky error, clicking Fetch during an auto-fetch shows that fetch
+  as running ("Fetching from origin…") and then its result, as for a
+  toolbar Fetch, and closing the repository or opening another stops
+  it.
 - **Annotated tags**: the sidebar tooltip showed the tag object's
   hash, which is in no log, and never the tagger or the message. It
   now shows the tagged commit, the tagger and the message.
@@ -64,16 +68,34 @@ tags, checkout, cloning and launching.
   changes. As in git, the branch now wins. This affected the sidebar,
   the toolbar branch switcher, Commands → Checkout branch and
   Commands → Checkout revision.
+- **Checking out a branch that another worktree has checked out**
+  wrote that branch's files and index before the switch was refused,
+  which left them staged on the current branch; from a detached HEAD
+  it wasn't refused at all, so two worktrees ended up on the same
+  branch. It is now refused before anything changes, and the error
+  says where the branch is checked out.
+- **Cherry-picked commits** were credited to you instead of their
+  author: GitBolt applies a pick and leaves the commit to the Commit
+  dialog, which used your name and date. The picked commit's author
+  and author date are now kept, with you as the committer.
+- **A checkout, cherry-pick or stash apply that failed partway** (a
+  file that couldn't be written, or another git holding the index
+  lock) could leave files listed as staged that weren't, and the next
+  commit included them. GitBolt now rereads the index after such a
+  failure and before staging or committing.
 - **Checkout as local branch** (sidebar, on a remote branch) failed
   whenever no local branch of that name existed yet. It now creates
   one that tracks the remote branch.
 - **A clone whose post-checkout hook fails** (from `core.hooksPath` or
   `init.templateDir`) was deleted, although git keeps it. It is now
   kept and offered for opening, like a clone whose checkout failed.
-- **Terminal**: large outputs draw several times faster
-  (`seq 1 100000` in zsh on a Mac: 2.7 s instead of 22.5 s), and on
-  macOS and Linux a character split between two reads no longer comes
-  out as replacement characters (`�`, one per byte).
+- **Terminal**: large outputs draw several times faster (in one
+  measurement, `seq 1 100000` in zsh took 2.7 s instead of 22.5 s).
+  On macOS and Linux, a command that prints without stopping (`yes`,
+  a huge `cat`) no longer freezes GitBolt, so Ctrl+C can stop it, and
+  a character split between two reads no longer comes out as
+  replacement characters (`�`, one per byte). On Linux, Ctrl+C copied
+  instead of interrupting when nothing was selected.
 - **Launching GitBolt while it is busy** (Windows): a second launch
   now waits for the busy window instead of saying it is not
   responding after 30 seconds, and takes over if that window quits or
